@@ -17,7 +17,7 @@ public struct ShimmerModifier: ViewModifier {
     
     @MainActor @Sendable
     private func taskAction() async {
-        let animation: Animation = active ? curve.animation(duration: duration).repeatForever(autoreverses: autoreverses) : curve.animation(duration: duration)
+        let animation = active ? curve.animation(duration: duration).repeatForever(autoreverses: autoreverses) : curve.animation(duration: duration)
         let transaction = Transaction(animation: animation)
         
         withTransaction(transaction) {
@@ -42,7 +42,7 @@ public enum ShimmerCurve {
         case .easeOut:
             return .easeOut(duration: duration)
         case .easeInOut:
-            return .easeOut(duration: duration)
+            return .easeInOut(duration: duration)
         }
     }
 }
